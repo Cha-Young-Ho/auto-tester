@@ -1,0 +1,53 @@
+/* styles.css */
+
+/* 전체 스타일 */
+body {
+    background-color: #333; /* 배경색 */
+    color: #ccc; /* 텍스트 색상 */
+    font-family: Arial, sans-serif; /* 글꼴 설정 */
+}
+
+/* 네비게이션 바 스타일 */
+nav {
+    background-color: #222; /* 배경색 */
+    padding: 10px; /* 내부 여백 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+nav ul {
+    list-style-type: none; /* 목록 스타일 제거 */
+    margin: 0;
+    padding: 0;
+    display: flex; /* 가로로 배열 */
+    justify-content: center; /* 가운데 정렬 */
+}
+
+nav ul li {
+    margin-right: 20px; /* 각 항목 사이 간격 */
+}
+
+nav ul li a {
+    color: #ccc; /* 링크 텍스트 색상 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+    padding: 10px 15px; /* 내부 여백 */
+}
+
+nav ul li a:hover {
+    background-color: #444; /* 호버 시 배경색 변경 */
+}
+
+/* 페이지 내용 스타일 */
+.container {
+    max-width: 800px; /* 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 20px; /* 내부 여백 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+h1 {
+    color: #fff; /* 헤더 텍스트 색상 */
+}
+
+p {
+    color: #ccc; /* 단락 텍스트 색상 */
+}
