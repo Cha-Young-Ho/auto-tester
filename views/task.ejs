@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Instance Group</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Create Instance Group</h1>
+
+    <label for="group_name">Instance Group Name:</label>
+    <input type="text" id="group_name" name="group_name" required>
+    
+    <br>
+
+    <label for="count">Count:</label>
+    <input type="number" id="count" name="count" min="1" max="10" required>
+
+    <br>
+
+    <div id="dynamic_dropdowns"></div>
+
+    <br>
+
+    <button id="submit_button">Submit</button>
+
+    <script src="./dynamic_dropdown.js"></script>
+</body>
+</html>

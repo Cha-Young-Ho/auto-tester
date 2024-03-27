@@ -9,11 +9,12 @@ export class TaskController{
 
     getAll(req: Request, res: Response) {
         const tasks = [{ id: 1, name: 'Task 1' }, { id: 2, name: 'Task 2' }];
-        return Promise.resolve(tasks);
+        return Promise.resolve(JSON.stringify(tasks));
     }
 
     createTask(req: Request, res: Response) {
-        const tasks = [{ id: 1, name: 'Task 1' }, { id: 2, name: 'Task 2' }];
+        const tasks = JSON.stringify(req.body);
+        console.log('tasks : ' + JSON.stringify(tasks));
         return Promise.resolve(tasks);
     }
 
