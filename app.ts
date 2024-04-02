@@ -21,7 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/task', taskRouter);
-// app.use('/view', viewRouter);
 
 // 서버 시작
 app.listen(port, () => {

@@ -11,14 +11,12 @@ export function handleRequest(req: express.Request, res: express.Response, taskP
         });
 }
 
-
 export function generateResponse(task: any, req: express.Request, res: express.Response): void {
-    const viewParam = req.query["view"]
+    const viewParam = req.query["view"];
     if (viewParam == "json") {
         res.json(task);
     } else {
         const fileName = generateFileNameFromUrl(req.originalUrl);
-        console.log('file :: ' + fileName);
         res.render(fileName, { task });
     }
 }
