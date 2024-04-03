@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { MysqlError, PoolConnection } from 'mysql';
-import { DBType } from '../db/db.type';
-import { dbFunction } from '../db/db.fuction';
+import { DBType } from '../../database/db.type';
+import { dbFunction } from '../../database/db.fuction';
 
 
 export class TaskController{
