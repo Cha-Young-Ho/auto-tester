@@ -2,5 +2,7 @@ import { DatabaseConfig } from '../../config/config';
 import { DBType } from '../db.type';
 
 export interface sql{
-    getConnection: (field : DBType) => any;
+    getConnection: () => any;
+    findTaskById: (id : number) => any;
+    findTasksByGroupId: (groupId : number) => any;
 }
