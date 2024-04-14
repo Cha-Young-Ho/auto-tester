@@ -17,6 +17,7 @@ export function generateResponse(task: any, req: express.Request, res: express.R
         res.json(task);
     } else {
         const fileName = generateFileNameFromUrl(req.originalUrl);
+        console.log(fileName);
         res.render(fileName, { task });
     }
 }

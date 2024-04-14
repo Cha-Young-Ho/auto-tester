@@ -1,13 +1,89 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= task %></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasks</title>
+<style>
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  font-size: 14px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+</style>
 </head>
 <body>
-    <h1><%= task %></h1>
-    <p>Welcome to Express with EJS</p>
+<div class="container" id="cardsContainer"></div>
+
+<script>
+// 여기에 Ajax 요청을 보내고 받은 데이터를 처리하는 코드를 작성합니다.
+fetch('/task/list?view=json', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // 응답 데이터를 JSON 형식으로 파싱하여 반환하는 프로미스 반환
+        })
+        .then(data => {
+            // 요청 완료 후 필요한 동작 수행
+            renderCards(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+// 데이터를 카드 뷰로 변환하는 함수
+function renderCards(data) {
+  const cardsContainer = document.getElementById('cardsContainer');
+  cardsContainer.innerHTML = ''; // 기존 카드들을 비워줍니다.
+
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const header = document.createElement('div');
+    header.classList.add('card-header');
+    header.textContent = item.tag;
+
+    const body = document.createElement('div');
+    body.classList.add('card-body');
+    body.innerHTML = `
+      <p><strong>Instance Type:</strong> ${item.instanceType}</p>
+      <p><strong>Region:</strong> ${item.region}</p>
+      <p><strong>Created:</strong> ${item.created}</p>
+    `;
+
+    card.appendChild(header);
+    card.appendChild(body);
+
+    cardsContainer.appendChild(card);
+  });
+}
+
+// 카드 뷰를 렌더링합니다.
+</script>
 </body>
 </html>

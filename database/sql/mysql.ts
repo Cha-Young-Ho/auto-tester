@@ -4,6 +4,7 @@ import { PoolConnection } from 'mysql';
 import { sql } from './sql';
 import path from 'path';
 import { DBType } from '../db.type';
+import { Task } from '../../src/task/TaskController';
 let pool: mysql.Pool;
 let connection: PoolConnection;
 
@@ -37,7 +38,7 @@ export const mysqlImpl : sql = {
     },
 
     async findTaskById(id : number) {
-        const query = 'SELECT * FROM test WHERE id = ?';
+        const query = 'SELECT * FROM ec2_instance WHERE id = ?';
         const params = [id];
         await this.getConnection();
         return new Promise((resolve, reject) => {
@@ -57,7 +58,7 @@ export const mysqlImpl : sql = {
     },
 
     async findTasksByGroupId(id : number) {
-        const query = 'SELECT * FROM test';
+        const query = 'SELECT * FROM ec2_instance';
 
         return new Promise((resolve, reject) => {
             connection.query(query, (error, results, fields) => {
@@ -68,7 +69,31 @@ export const mysqlImpl : sql = {
                 }
             });
         });
-    }
+    },
 
+    async getAllTasks() {
+        const query = 'SELECT * FROM ec2_instance';
+        return await new Promise((resolve, reject) => {
+            connection.query(query, (error, results, fields) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    const tasks : Task[] = [];
+                    for (let i = 0; i < results.length; i++)
+                        tasks.push({
+                            id: results[i].id,
+                            tag: results[i].tag,
+                            instanceType: results[i].instance_type,
+                            status: results[i].status,
+                            created: results[i].created,
+                            updated: results[i].updated
+                        });
+                    resolve(tasks);
+                }
+                    
+            })
+        });
+        
+    }
 
 }
